@@ -1,9 +1,16 @@
 package cefdemo.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
+
 @Entity
+@Table(name = "request_entity")
 public class RequestEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +20,11 @@ public class RequestEntity implements Serializable {
     private String sum;
     private String number;
     private String date_of_contract;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_entity")
+    private UserEntity userEntity;
+
 
     public RequestEntity() {}
 
