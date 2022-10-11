@@ -19,8 +19,11 @@ public class UserEntity implements Serializable {
     private String date_of_registration;
     private String full_name;
 
-    @OneToMany(mappedBy = "user_entity", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,
+    mappedBy = "userEntity")
+//    mappedBy = "id",
     private Set<RequestEntity> requestEntities = new HashSet<>();
+
 
 
     public UserEntity(Long id, String login, String IIN, String BIN, String password, String date_of_registration, String full_name, Set<RequestEntity> requestEntities) {
@@ -91,6 +94,14 @@ public class UserEntity implements Serializable {
 
     public void setFull_name(String full_name) {
         this.full_name = full_name;
+    }
+
+    public Set<RequestEntity> getRequestEntities() {
+        return requestEntities;
+    }
+
+    public void setRequestEntities(Set<RequestEntity> requestEntities) {
+        this.requestEntities = requestEntities;
     }
 
     @Override

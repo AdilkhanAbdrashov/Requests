@@ -21,8 +21,10 @@ public class RequestEntity implements Serializable {
     private String number;
     private String date_of_contract;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_entity")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinTable(name = "user_entity")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_entity_id")
     private UserEntity userEntity;
 
 
@@ -74,6 +76,14 @@ public class RequestEntity implements Serializable {
 
     public void setDate_of_contract(String date_of_contract) {
         this.date_of_contract = date_of_contract;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     @Override
